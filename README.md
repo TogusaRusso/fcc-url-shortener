@@ -17,13 +17,13 @@
 ```javascript
   {
     original_url: "https://tproger.ru/translations/building-messenger/",
-    short_url: "https://complete-hair.glitch.me/596fb991638fda1ace706f9d"
+    short_url: "https://complete-hair.glitch.me/1"
   }
 ```
 
 ## Example usage
 
-<https://complete-hair.glitch.me/596fb991638fda1ace706f9d>
+<https://complete-hair.glitch.me/1>
 
 ## Wil redirect to
 

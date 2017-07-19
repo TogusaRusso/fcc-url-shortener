@@ -31,7 +31,7 @@ app.get('/new/*', (req, res) => {
         db.close()
         res.json({
           original_url: result.original_url,
-          short_url: shortUrlStart + result._id
+          short_url: shortUrlStart + result.id
         })
       }
       let search = { original_url: url }
@@ -41,8 +41,9 @@ app.get('/new/*', (req, res) => {
           if (result) report(result)
           else {
             shortUrls
-              .insertOne(search)
-              .then(result => report(search))
+              .count()
+              .then(result => shortUrls.insertOne(search = { original_url: url, id: result }))
+              .then(() => report(search))
               .catch(err => {
                 throw err
               })
@@ -61,7 +62,7 @@ app.get('/:param', (req, res) => {
     .then(db => {
       const shortUrls = db.collection('shortUrls')
       shortUrls
-        .findOne({ _id: mongodb.ObjectID(param) })
+        .findOne({ id: +param })
         .then(result => {
           db.close()
           if (!result) return res.json({ error: 'This short url not found' })
